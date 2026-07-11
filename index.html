@@ -249,16 +249,17 @@ function sS(ui,si) {
 function rQ(ui,si,q) {
   var k = ui+"-"+si+"-"+q.id;
   var st = S[k]||{}, a = q.a, opts = q.o;
-  var h = '<div class="qc" id="c'+k+'"><div class="qh"><span class="qn">'+q.id+'.</span><span>'+q.q+'</span></div>';
-  if (st.ch) {
-    h += '<div class="qtr" id="tr'+k+'">📖 '+(q.t||"暂无翻译")+'</div>';
-  }
+  var h = '<div class="qc" id="c'+k+'"><div class="qh"><span class="qn">'+q.id+'.</span><span>'+q.q+'</span>';
+  if (st.ch && q.t) { h += '<div style="font-size:13px;color:#888;margin-top:4px;font-weight:400">'+q.t+'</div>'; }
+  h += '</div>';
   h += '<div class="os">';
   var ll = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
   opts.forEach(function(o,i) {
     var le = ll[i], cl = st.ch ? (le===a?"r":(st.s===le?"w":"")) : (st.s===le?"s":"");
     h += '<div class="op '+cl+'" data-k="'+k+'" data-l="'+le+'">';
-    h += '<span class="l">'+le+'</span><span>'+o+'</span></div>';
+    h += '<span class="l">'+le+'</span><span>'+o+'</span>';
+    if (st.ch && q.ot && q.ot[i]) { h += ' <span style="color:#888;font-size:13px">('+q.ot[i]+')</span>'; }
+    h += '</div>';
   });
   h += '</div><div class="qf">';
   if (st.ch) {
@@ -269,8 +270,6 @@ function rQ(ui,si,q) {
 }
 
 
-function autoTr(k) {}
-function clozeTr(ui, si) {}
 function rC(ui,si,s) {
   var k = ui+"-"+si, cs = C[k]||{};
   var h = '<div class="cc"><div class="ci">';
@@ -301,7 +300,7 @@ function rC(ui,si,s) {
   var d=0,o=0;
   s.blanks.forEach(function(b){ var st=cs[b[0]]; if(st&&st.ch){d++;if(st.ok)o++;} });
   if (d>0) { h += '<div style="text-align:center;padding:10px;font-size:16px;font-weight:700;color:'+(o===d?"#4caf50":"#f44336")+'">'+o+"/"+d+" 正确</div>"; }
-  h += '<div id="trc'+ui+"-"+si+'" class="qtr" style="display:'+(d>0?"block":"none")+'">⏳ 翻译全文...</div>';
+  
   h += '<div class="ca"><button class="cac" data-ui="'+ui+'" data-si="'+si+'">批改全部</button><button class="car" data-ui="'+ui+'" data-si="'+si+'">重置</button></div></div>';
   return h;
 }

@@ -269,14 +269,8 @@ function rQ(ui,si,q) {
 }
 
 
-function autoTr(k) {
-  var el = gid("tr"+k);
-  if (el && !el.dataset.loaded) { el.innerHTML = "翻译已内置"; el.dataset.loaded = "1"; }
-}
-function clozeTr(ui, si) {
-  var el = gid("trc"+ui+"-"+si);
-  if (el) { el.innerHTML = "翻译已内置"; el.dataset.loaded = "1"; }
-}
+function autoTr(k) {}
+function clozeTr(ui, si) {}
 function rC(ui,si,s) {
   var k = ui+"-"+si, cs = C[k]||{};
   var h = '<div class="cc"><div class="ci">';
@@ -331,7 +325,6 @@ document.addEventListener("click", function(e) {
     var card = op.closest(".qc");
     if (card) { var qf=null; ql.forEach(function(qx){if(qx.id===qid)qf=qx;}); if(qf) card.outerHTML = rQ(ui,si,qf); }
     // Auto translate
-    setTimeout(function(){ autoTr(k); }, 100);
     uS(); return;
   }
   var bs = e.target.closest(".bs");

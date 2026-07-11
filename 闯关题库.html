@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>英语四级闯关题库</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#f0f2f5;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;color:#333}
+.header{background:linear-gradient(135deg,#1a237e,#283593);color:#fff;padding:30px 20px;text-align:center}
+.header h1{font-size:28px}
+.header h1 span{color:#ffd54f}
+.stats{background:#fff;border-bottom:1px solid #ddd;padding:12px 20px;display:flex;justify-content:center;gap:30px;position:sticky;top:0;z-index:100;flex-wrap:wrap}
+.stats .s{font-size:14px;color:#555}
+.stats .n{font-weight:700;color:#1a237e;font-size:18px}
+.app{display:flex;max-width:1400px;margin:0 auto;padding:20px;gap:20px}
+.side{width:240px;flex-shrink:0}
+.snav{background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.08);position:sticky;top:80px}
+.snav-i{padding:14px 18px;cursor:pointer;border-left:4px solid transparent;border-bottom:1px solid #f0f0f0;transition:.2s}
+.snav-i:hover{background:#f5f5f5}
+.snav-i.on{background:#e8eaf6;border-left-color:#1a237e}
+.snav-i .ti{font-size:14px;font-weight:600}
+.snav-i .su{font-size:11px;color:#999}
+.main{flex:1;min-width:0}
+.stabs{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap;align-items:center}
+.stab{padding:8px 18px;border-radius:20px;border:none;background:#fff;cursor:pointer;font-size:13px;box-shadow:0 1px 3px rgba(0,0,0,.08);transition:.2s}
+.stab.on{background:#1a237e;color:#fff}
+.bback{padding:6px 12px;border-radius:8px;border:1px solid #e0e0e0;background:#fafafa;cursor:pointer;font-size:13px;color:#555;display:flex;align-items:center;gap:4px}
+.bback:hover{background:#e3f2fd;border-color:#90caf9}
+.qc{background:#fff;border-radius:12px;padding:18px 20px;margin-bottom:10px;box-shadow:0 1px 4px rgba(0,0,0,.06)}
+.qh{display:flex;gap:8px;margin-bottom:10px;font-size:15px;font-weight:600}
+.qh .qn{color:#1a237e;min-width:30px}
+.op{padding:8px 12px;border:1px solid #e0e0e0;border-radius:8px;cursor:pointer;margin-bottom:4px;font-size:14px;display:flex;align-items:center;gap:8px;transition:.15s}
+.op:hover{border-color:#90caf9;background:#e3f2fd}
+.op.s{border-color:#1a237e;background:#e8eaf6}
+.op.r{border-color:#4caf50;background:#e8f5e9}
+.op.w{border-color:#f44336;background:#ffebee}
+.op .l{width:22px;height:22px;border-radius:50%;background:#f0f0f0;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0}
+.op.s .l{background:#1a237e;color:#fff}
+.op.r .l{background:#4caf50;color:#fff}
+.op.w .l{background:#f44336;color:#fff}
+.qf{display:flex;justify-content:flex-end;margin-top:8px;gap:8px;align-items:center}
+.qf button{padding:5px 16px;border:none;border-radius:6px;cursor:pointer;font-size:13px;background:#1a237e;color:#fff}
+.qf button:disabled{background:#bdbdbd;cursor:default}
+.qf .r{font-size:13px;font-weight:600}
+.qf .r.g{color:#4caf50}
+.qf .r.b{color:#f44336}
+.qf .tbtn{cursor:pointer;font-size:13px;color:#1a237e;font-weight:600;padding:4px 10px;border-radius:6px;transition:.2s}
+.qf .tbtn:hover{background:#e8eaf6}
+.qtr{background:#f5f5f5;padding:8px 12px;border-radius:8px;margin-bottom:10px;font-size:14px;color:#333;line-height:1.6;border-left:3px solid #1a237e;cursor:pointer}
+.qtr:hover{background:#eee}
+
+.cc{background:#fff;border-radius:12px;padding:24px;box-shadow:0 1px 4px rgba(0,0,0,.06)}
+.ci{font-size:14px;color:#444;margin-bottom:14px;padding:12px 16px;background:#e3f2fd;border-radius:8px;border-left:4px solid #1a237e;line-height:1.6}
+.cp{font-size:15px;line-height:2.2;margin-bottom:16px}
+.cp p{margin-bottom:10px}
+.bs{display:inline-block;min-width:80px;padding:1px 6px;margin:0 2px;border-bottom:2px dashed #1a237e;text-align:center;cursor:pointer;font-weight:600;color:#1a237e;background:#e8eaf6;border-radius:3px 3px 0 0;transition:.15s}
+.bs:hover{background:#c5cae9}
+.bs.f{border-bottom-style:solid}
+.bs.r{border-bottom-color:#4caf50;background:#e8f5e9;color:#2e7d32}
+.bs.w{border-bottom-color:#f44336;background:#ffebee;color:#c62828}
+.bs.a{border-bottom-color:#f44336;background:#ffcdd2;animation:pulse 1s infinite}
+@keyframes pulse{0%{opacity:1}50%{opacity:.6}100%{opacity:1}}
+.bs .bn{font-size:9px;color:#999;font-weight:400;display:block;margin-top:-12px}
+.wb{background:#f5f5f5;border-radius:12px;padding:14px;margin-bottom:12px}
+.wb .t{font-size:13px;font-weight:600;margin-bottom:8px}
+.wb .g{display:flex;flex-wrap:wrap;gap:6px}
+.wbt{padding:6px 14px;border:2px solid #e0e0e0;border-radius:8px;background:#fff;cursor:pointer;font-size:13px;display:flex;align-items:center;gap:4px;transition:.15s}
+.wbt:hover{border-color:#1a237e;background:#e8eaf6}
+.wbt.u{opacity:.4;background:#f5f5f5;cursor:default}
+.wbt .wl{width:18px;height:18px;border-radius:50%;background:#1a237e;color:#fff;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.wbt.u .wl{background:#bdbdbd}
+.ca{display:flex;gap:10px;margin-top:14px}
+.ca button{padding:8px 22px;border:none;border-radius:8px;cursor:pointer;font-size:14px;font-weight:500}
+.cac{background:#1a237e;color:#fff}
+.car{background:#fff3e0;color:#e65100}
+.snb{display:inline-block;background:#f44336;color:#fff;font-size:10px;padding:1px 6px;border-radius:10px;min-width:18px;text-align:center;margin-left:4px}
+.wv{padding:10px 0}
+.wv h3{font-size:18px;margin-bottom:16px}
+.wvi{font-size:14px;color:#666;margin-bottom:16px;padding:12px 16px;background:#fff3e0;border-radius:8px;border-left:4px solid #f44336;line-height:1.6}
+.wq{background:#fff;border-radius:12px;padding:16px 20px;margin-bottom:12px;box-shadow:0 1px 4px rgba(0,0,0,.06)}
+.wq .wi{font-size:13px;color:#888;margin-bottom:6px}
+.wq .qt{font-weight:600;margin-bottom:8px;font-size:14px}
+.wqa{margin:3px 0;padding:6px 10px;border-radius:6px;font-size:14px}
+.wqa.w{background:#ffebee;color:#c62828}
+.wqa.r{background:#e8f5e9;color:#2e7d32}
+.wbtn{padding:10px 24px;border:none;border-radius:8px;cursor:pointer;font-size:14px;font-weight:500;margin-right:10px;margin-top:10px}
+.snav-b{display:flex;justify-content:space-between;gap:10px;margin-top:16px}
+.snav-b button{padding:10px 20px;border:none;border-radius:8px;cursor:pointer;font-size:14px;font-weight:500;transition:.2s}
+.snav-b .prev{background:#e0e0e0;color:#555}
+.snav-b .prev:hover{background:#bdbdbd}
+.snav-b .next{background:#1a237e;color:#fff}
+.snav-b .next:hover{background:#283593}
+.snav-b .next:disabled{background:#bdbdbd;cursor:default}
+.wbtn.d{background:#f44336;color:#fff}
+.wbtn.p{background:#1a237e;color:#fff}
+.hv{padding:10px 0}
+.hv h3{font-size:18px;margin-bottom:16px}
+.ht{width:100%;border-collapse:collapse;background:#fff;border-radius:8px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,.06)}
+.ht th{background:#1a237e;color:#fff;padding:10px 14px;font-size:13px;text-align:left}
+.ht td{padding:10px 14px;font-size:13px;border-bottom:1px solid #f0f0f0}
+.ht tr:hover{background:#f5f5f5}
+@media(max-width:768px){
+  .header{padding:16px 12px}
+  .header h1{font-size:20px}
+  .stats{gap:10px;padding:8px;overflow-x:auto;flex-wrap:nowrap;justify-content:flex-start}
+  .stats .s{font-size:12px;white-space:nowrap}
+  .stats .n{font-size:15px}
+  .app{flex-direction:column;padding:8px;gap:8px}
+  .side{width:100%}
+  .snav{position:static;display:flex;overflow-x:auto;border-radius:8px;gap:0}
+  .snav-i{flex-shrink:0;border-left:none;border-bottom:2px solid transparent;padding:8px 12px}
+  .snav-i .ti{font-size:12px;white-space:nowrap}
+  .snav-i .su{font-size:10px}
+  .stabs{overflow-x:auto;flex-wrap:nowrap;padding-bottom:4px;gap:4px}
+  .stab{font-size:11px;padding:6px 12px;white-space:nowrap;flex-shrink:0}
+  .bback{font-size:11px;padding:5px 8px;flex-shrink:0}
+  .qc{padding:12px;border-radius:8px}
+  .qh{font-size:13px}
+  .qh .qn{min-width:24px;font-size:13px}
+  .op{padding:6px 10px;font-size:13px;gap:6px}
+  .op .l{width:20px;height:20px;font-size:10px}
+  .qf button{font-size:12px;padding:4px 12px}
+  .qf .r{font-size:12px}
+  .cc{padding:14px;border-radius:8px}
+  .ci{font-size:13px;padding:8px 10px}
+  .cp{font-size:14px;line-height:1.8}
+  .bs{min-width:60px;font-size:13px;padding:1px 4px}
+  .bs .bn{font-size:8px}
+  .wb{padding:10px}
+  .wb .t{font-size:12px}
+  .wbt{font-size:12px;padding:5px 10px}
+  .wbt .wl{width:16px;height:16px;font-size:9px}
+  .ca{gap:6px}
+  .ca button{font-size:13px;padding:6px 16px}
+}
+@media(max-width:480px){
+  .header h1{font-size:17px}
+  .stats .s{font-size:11px}
+  .stab{font-size:10px;padding:4px 8px}
+  .qh{font-size:12px}
+  .op{font-size:12px;padding:5px 8px}
+  .cp{font-size:13px}
+  .bs{min-width:50px;font-size:12px;padding:0 3px}
+  .wbt{font-size:11px;padding:4px 8px}
+  .ci{font-size:12px}
+}
+</style>
+</head>
+<body>
+<div class="header"><h1>期末 <span>复习</span></h1></div>
+<div class="stats">
+  <span class="s">总题数 <span class="n" id="tq">0</span></span>
+  <span class="s">已答 <span class="n" id="dq">0</span></span>
+  <span class="s">正确 <span class="n" id="cq">0</span></span>
+  <span class="s">正确率 <span class="n" id="ar">0%</span></span>
+</div>
+<div class="app"><div class="side"><div class="snav" id="nav"></div></div><div class="main" id="main"></div></div>
+<script>
+var D = [{"name": "Ocean Exploration", "subtitle": "Unit 1", "color": "#4A90D9", "sections": [{"type": "normal", "name": "Part II Listening Section A", "questions": [{"id": 1, "q": "", "o": ["A severe flood.", "A violent storm.", "A terrible tsunami.", "A powerful earthquake."], "a": "D"}, {"id": 2, "q": "", "o": ["There would be hazardous waves.", "Hawaii would be badly damaged.", "There would be strong aftershocks.", "Some islands would be submerged."], "a": "A"}, {"id": 3, "q": "", "o": ["An undersea cable system.", "International data collection.", "The salvage of sunken ships.", "A vast intricate network system."], "a": "A"}, {"id": 4, "q": "", "o": ["They are sensitive to light.", "They transmit electrical energy.", "They are less susceptible to interference.", "They are more expensive than copper cables."], "a": "C"}, {"id": 5, "q": "", "o": ["Sea level rise.", "Climate change.", "The melting ice.", "Oceanic currents."], "a": "A"}, {"id": 6, "q": "", "o": ["Storm surges.", "The moon's pull.", "Large population.", "Greenhouse gases."], "a": "A"}, {"id": 7, "q": "", "o": ["It would rise more than eight meters.", "It would rise almost three meters.", "It would rise nearly 80 centimeters.", "It would rise by one and a half meters."], "a": "B"}]}, {"type": "normal", "name": "Part II Listening Section B", "questions": [{"id": 8, "q": "", "o": ["The dinosaur age.", "Prehistoric bacteria.", "The cause of climate change.", "The cause of mass extinctions."], "a": "D"}, {"id": 9, "q": "", "o": ["About 40 million years ago.", "About 540 million years ago.", "About 23 million years ago.", "About 65 million years ago."], "a": "D"}, {"id": 10, "q": "", "o": ["The rising sea level.", "The lack of sunlight.", "The rise and fall of sea level.", "The crush of big meteor to earth."], "a": "C"}, {"id": 11, "q": "", "o": ["It gets mild.", "It gets moist.", "It gets hotter.", "It gets colder."], "a": "D"}, {"id": 12, "q": "", "o": ["Engineer.", "Photographer.", "Movie maker.", "Ocean explorer."], "a": "D"}, {"id": 13, "q": "", "o": ["29 percent of the ocean has been explored.", "Most of the ocean is completely unexplored.", "More than 72 percent of the ocean is yet to be explored.", "There isn't much down in the ocean to explore."], "a": "B"}, {"id": 14, "q": "", "o": ["The worms had another creature in their body.", "The worms were 30 feet long with new life forms.", "The worms took over the bodies of other creatures.", "The worms were threatened by poisonous chemicals."], "a": "A"}, {"id": 15, "q": "", "o": ["Finding out the Titanic.", "Making amazing videos.", "Taking a sample he needs.", "Exploring the Gulf of Mexico."], "a": "C"}]}, {"type": "normal", "name": "Part II Listening Section C", "questions": [{"id": 16, "q": "", "o": ["A traditional sub.", "A navigating system.", "A nuclear submarine.", "A manned submersible."], "a": "D"}, {"id": 17, "q": "", "o": ["It's big in size but fast in speed.", "It's a single-person vessel system.", "It has a complex operating system.", "It's big in size and heavy in weight."], "a": "B"}, {"id": 18, "q": "", "o": ["By the foot pedals.", "By the touch screen.", "By the manipulator arm.", "By an onboard computer."], "a": "A"}, {"id": 19, "q": "", "o": ["It should be used within two days.", "It should be used only in emergency.", "It should be used after being treated.", "It should be used to replace fertilizers."], "a": "C"}, {"id": 20, "q": "", "o": ["It contains many contaminants.", "It is too expensive to recycle it.", "It lacks nutrients for plant growth.", "It is in short supply in many places."], "a": "A"}, {"id": 21, "q": "", "o": ["It will pose no danger to human health.", "It will increase in growing our future food.", "It will be banned in agriculture.", "It will promote the development of agricultural industry."], "a": "B"}, {"id": 22, "q": "", "o": ["To explore the ocean.", "To explore the heavens.", "To create maps of Mars.", "To aid NASA's research."], "a": "A"}, {"id": 23, "q": "", "o": ["50.", "15.", "1,060.", "1,600."], "a": "D"}, {"id": 24, "q": "", "o": ["Mariner.", "Biochemist.", "Administer.", "Photographer."], "a": "D"}, {"id": 25, "q": "", "o": ["Find more sources of food in the ocean.", "Explore how the ocean affects the climate.", "Join NOAA's scientific research program.", "Create images of our coexistence with the ocean."], "a": "D"}]}, {"type": "cloze", "name": "Part III Reading Section A (选词填空 Q26-35)", "passage": ["World Ocean Day in the environmental calendar began on 8 June 1992. It was [26] by a group of environmentalists at the Earth Summit in Rio De Janeiro, Brazil. On this day, activities take place around the world. These let us appreciate how important the oceans are to us and how they are essential for our [27]. It is a day for us to [28] about the diversity of life in the oceans and how our actions are killing many species. The day also hopes to raise awareness that our oceans are a [29] part of keeping our planet at the right temperature.", "The world's oceans are under serious [30] today. Over-fishing, pollution and global warming are just a few of the things damaging the seas. Climate change means sea levels are rising. Scientists [31] that within fifty years, many of today's countries will be under water. A warming world also changes the way ocean water [32]. If parts of the world become too warm, ocean temperatures could change and cause havoc to the world's weather patterns. Changing water temperatures could also make many marine species [33]. Oceans are becoming saltier because of global warming. This is killing many coral reefs, which lead to many [34] of ocean life dying. We really can't [35] how our lives damage the oceans."], "wordBank": [["A", "species"], ["B", "overlook"], ["C", "threat"], ["D", "hostile"], ["E", "circulates"], ["F", "survival"], ["G", "landmark"], ["H", "learn"], ["I", "extinct"], ["J", "expertise"], ["K", "assume"], ["L", "habitat"], ["M", "initiated"], ["N", "fit"], ["O", "vital"]], "blanks": [[26, "M"], [27, "F"], [28, "H"], [29, "O"], [30, "C"], [31, "K"], [32, "E"], [33, "I"], [34, "A"], [35, "B"]]}, {"type": "normal", "name": "Part III Reading Section C", "questions": [{"id": 46, "q": "What do we learn about deep sea mining?", "o": ["Deep sea mining has generated great benefits to our life.", "Deep sea mining has posed a serious threat to ocean systems.", "Cost-effective technology for deep sea mining has been developed.", "A perfect penalty system for deep sea mining has been established."], "a": "B"}, {"id": 47, "q": "What has Nautilus Minerals done with deep sea mining?", "o": ["It has made great investment in the mining machines.", "It has initiated the scientific exploration of the deep sea.", "It has made critical contributions to the deep sea assessment.", "It has put some energy into analyzing the deep sea ecosystem."], "a": "A"}, {"id": 48, "q": "What is the main motivation for the mineral exploitation in the deep sea?", "o": ["Scientific value.", "Economic interest.", "Curiosity of the ocean.", "Geological exploration."], "a": "B"}, {"id": 49, "q": "What does the author mean by saying 'blunt the sharp edge of enthusiasm' (Para. 4)?", "o": ["Put a stop to the deep sea mining projects.", "Solve the conflicts among deep sea miners.", "Cool down the craze of deep sea exploitation.", "Recognize the enthusiasm towards the ocean."], "a": "C"}, {"id": 50, "q": "What is the author's attitude toward deep sea mining?", "o": ["Objective.", "Pessimistic.", "Suspicious.", "Indifferent."], "a": "A"}, {"id": 51, "q": "What do we learn about the Mariana Trench?", "o": ["It is the center of the world's ocean.", "It has been affected by contamination.", "It remains untouched by human activity.", "It has been profoundly explored by scientists."], "a": "B"}, {"id": 52, "q": "What did Alan Jamieson's team use the 'lander' for?", "o": ["Deep sea fishery and adventure.", "Getting samples from the deep sea.", "Testing water pressure in the trench.", "Clearing away the industrial pollutants."], "a": "B"}, {"id": 53, "q": "What have the scientists discovered about the amphipods?", "o": ["They are trapped in the trench.", "They live on organic pollutants.", "They have been highly polluted.", "They are identified as a new species."], "a": "C"}, {"id": 54, "q": "What does Jamieson suggest about how the pollutants get to the seafloor?", "o": ["Fish spread the pollutants as they swim around in the deep ocean.", "Plastic gets gradually dissolved in the ocean and falls to the seafloor.", "Plastic in the ocean keeps the pollutants from getting to the seafloor.", "Dead marine animals that have absorbed pollutants fall to the seafloor."], "a": "D"}, {"id": 55, "q": "Dafforn considers the discovery of the toxic chemicals in the trenches disturbing because ______.", "o": ["we are paying little attention to the impacts of sea exploration.", "we can't foresee how long the chemicals will influence our life.", "we have no idea about the source of the high levels of toxic chemicals.", "we don't know completely what impacts the chemicals may bring to us."], "a": "D"}]}]}, {"name": "China in Transition", "subtitle": "Unit 2", "color": "#E67E22", "sections": [{"type": "normal", "name": "Part II Listening Section A", "questions": [{"id": 1, "q": "", "o": ["She is the world's youngest and most experienced spacewoman.", "She has spent less time off the planet than former space residents.", "She set the world record for most spacewalks ever made by an astronaut.", "She broke the current time record for total spacewalking time by a woman."], "a": "D"}, {"id": 2, "q": "", "o": ["June.", "July.", "September.", "November."], "a": "C"}, {"id": 3, "q": "", "o": ["5,000.", "11,000.", "14,000.", "50,000."], "a": "B"}, {"id": 4, "q": "", "o": ["5% of the female labour force worked at night.", "Working at night was linked with breast cancer.", "Hormone production was affected by the body clock.", "There was no relation between night shift and breast cancer."], "a": "D"}, {"id": 5, "q": "", "o": ["With a paved road.", "With pedal controls.", "With a steering wheel.", "With a remote control."], "a": "D"}, {"id": 6, "q": "", "o": ["Standardization of safety requirements.", "Popularization of self-driving cars.", "Expansion of automobile market.", "Widespread use of clean energy."], "a": "B"}, {"id": 7, "q": "", "o": ["It released the guidelines for driverless vehicles.", "It investigated the safety of autonomous vehicles.", "It changed the rules of testing driverless vehicles.", "It allowed 27 companies to test autonomous vehicles."], "a": "A"}]}, {"type": "normal", "name": "Part II Listening Section B", "questions": [{"id": 8, "q": "", "o": ["Visit a famous town.", "Attend a school party.", "See the woman's friend.", "Eat at a pizza restaurant."], "a": "D"}, {"id": 9, "q": "", "o": ["2:00 PM.", "4:00 PM.", "6:00 PM.", "8:00 PM."], "a": "A"}, {"id": 10, "q": "", "o": ["She is very tall.", "She has long hair.", "She wears glasses.", "She is overweight."], "a": "C"}, {"id": 11, "q": "", "o": ["Kindergarten kids.", "Primary school students.", "High school students.", "College students."], "a": "A"}, {"id": 12, "q": "", "o": ["One week ago.", "Two months ago.", "Three years ago.", "Five years ago."], "a": "D"}, {"id": 13, "q": "", "o": ["Hard Rock.", "Rock and Roll.", "Country music.", "Classical music."], "a": "B"}, {"id": 14, "q": "", "o": ["In the sun.", "In the shade.", "In the front row.", "In the cheap seat."], "a": "B"}, {"id": 15, "q": "", "o": ["Nothing.", "A soda.", "A bag of chips.", "A bottle of water."], "a": "A"}]}, {"type": "normal", "name": "Part II Listening Section C", "questions": [{"id": 16, "q": "", "o": ["Ways to keep ebooks handy to read.", "Costs of buying ebooks on your phone.", "Places to find free or discounted ebooks.", "Comparisons of ebooks and traditional books."], "a": "C"}, {"id": 17, "q": "", "o": ["They are eager to gain fame.", "They want to grow a readership.", "They intend to attract teenagers.", "They have given up the copyright."], "a": "B"}, {"id": 18, "q": "", "o": ["They may offer links to some unhealthy websites.", "They may sell discounted books instead of free ones.", "The free ebooks on them may have a price attached later.", "The free ebook files from them may infect your computer."], "a": "D"}, {"id": 19, "q": "", "o": ["It is an information-generated technology.", "It creates a two-dimensional digital world.", "People can interact with the virtual world VR creates.", "People can experience VR without special equipment."], "a": "C"}, {"id": 20, "q": "", "o": ["Business.", "Medicine.", "Education.", "Psychology."], "a": "D"}, {"id": 21, "q": "", "o": ["People can overcome the stress from work.", "People can work at home as if they are at office.", "People can contact others without mobile phones.", "People can work without the connection to the internet."], "a": "B"}, {"id": 22, "q": "", "o": ["$14,210.", "$20,090.", "$30,300.", "$48,000."], "a": "B"}, {"id": 23, "q": "", "o": ["A decrease in the number of low income students enrolling in college.", "A decrease in the spending on all forms of financial aid for colleges.", "An increase in the average yearly cost of a four-year public college.", "An increase in the number of college students from poor families."], "a": "A"}, {"id": 24, "q": "", "o": ["25 colleges and universities have agreed to be part of it.", "It receives support from a higher education research group.", "The American Council on Education launches it in October.", "It is a project established by a private leadership organization."], "a": "B"}, {"id": 25, "q": "", "o": ["To reform the U.S. higher education system.", "To reduce the cost of attending a four-year public college.", "To gain greater support from the higher education research group.", "To increase the number of low-income students studying at these schools."], "a": "D"}]}, {"type": "cloze", "name": "Part III Reading Section A (选词填空 Q26-35)", "passage": ["\"Now I don't have to worry about my little son not [26] me when I go back home for Spring Festival,\" says Yang Dongmei, a 26-year-old worker in one of the southern Chinese factories that [27] toys for companies including Disney, Mattel and Toys R Us.", "Yang's two boys, aged two and four, live with their grandparents in Henan province, more than 1,000km away. But they spent last year's summer holidays in the factory where Yang works, under a [28] that hopes to improve family life for [29] workers in Guangdong province.", "The Family Friendly Factory Spaces (FFFS) scheme, run by ICTI Care, a not-for-profit project, [30], entertains and educates factory employees' children during the school summer holidays while their parents work on production lines nearby. It was [31] in two Guangdong factories last year, with 85 children aged between four and 13, and plans to expand to more sites this year.", "In the pilot schemes, the children were supervised by carers [32] by ICTI Care in separate dormitory buildings and kept occupied with books, games, DVDs and other activities. When shifts were over, the families could spend time together, something previously restricted to [33] hometown visits.", "The scheme can also [34] to business benefits, according to Mark Robertson, director of communications and stakeholder relations at ICTI Care. Robertson says both factories reported [35] in retention rates among workers who participated, higher levels of trust and better employee-management relationships."], "wordBank": [["A", "launched"], ["B", "disputes"], ["C", "campaign"], ["D", "resourceful"], ["E", "contribute"], ["F", "recognizing"], ["G", "suspended"], ["H", "manufactures"], ["I", "rare"], ["J", "hosts"], ["K", "acquires"], ["L", "boosts"], ["M", "migrant"], ["N", "dramatic"], ["O", "funded"]], "blanks": [[26, "F"], [27, "H"], [28, "C"], [29, "M"], [30, "J"], [31, "A"], [32, "O"], [33, "I"], [34, "E"], [35, "L"]]}, {"type": "normal", "name": "Passage One (高铁)", "questions": [{"id": 46, "q": "What do we learn about the next generation of high-speed trains in China?", "o": ["They can run at a top speed of 450km/h.", "They can expand wireless network coverage.", "They can carry cargo at a top speed of 250km/h.", "They can meet the needs of people from different areas."], "a": "C"}, {"id": 47, "q": "In what harsh condition is China's high-speed rail network designed to operate?", "o": ["The longest valley in China.", "The highest altitudes in Tibet.", "The vastest desert in the world.", "The lowest temperatures in Asia."], "a": "B"}, {"id": 48, "q": "How long does the world's installed high-speed rail network cover?", "o": ["About 20,000km.", "About 30,000km.", "About 33,300km.", "About 45,500km."], "a": "C"}, {"id": 49, "q": "What do we learn about the first of the Chinese high-speed trains?", "o": ["It operated at the top speed of 200km/h.", "It rolled off the assembly line in 2007.", "It ran for the distance about 3,000km.", "It was designed for the mild winter."], "a": "B"}, {"id": 50, "q": "What are the Chinese companies attempting to do now?", "o": ["Sign high-speed rail contracts with African countries.", "Build the overland rail network from Singapore to Europe.", "Secure the high-speed rail projects in Turkey, Indonesia and Thailand.", "Bid for the high-speed rail projects in Malaysia, the U.S. and South America."], "a": "D"}]}, {"type": "normal", "name": "Passage Two (双十一)", "questions": [{"id": 51, "q": "What did the media predict about Alibaba's 11.11 Festival in 2016?", "o": ["The 2015 record would be smashed by the sales in 2016.", "GMV from the shopping festival would come at $20 billion.", "Retailers on Alibaba's platforms would record $17.8 billion.", "The festival would earn less than the Black Friday in the U.S."], "a": "B"}, {"id": 52, "q": "What does the author say about Singles' Day?", "o": ["It was first celebrated in 2009.", "It was first entitled by single Americans.", "It was used by singles to receive discounts.", "It was made up to be against Valentine's Day."], "a": "D"}, {"id": 53, "q": "What do we learn about the brands joining in Alibaba's 11.11 Festival in 2016?", "o": ["The local Chinese brands performed much worse.", "Deals offered by the local Chinese brands were among the top-sellers.", "More than 14,000 international brands took part in the festival.", "The international brands came from 207 countries and regions."], "a": "C"}, {"id": 54, "q": "What did Head Qian say about mobile e-commerce transactions in China?", "o": ["Most online shoppers used mobile phones at least twice to make a transaction.", "More middle class consumers would use mobile phones to make transactions.", "The number of mobile e-commerce transactions would continue to decline.", "Mobile e-commerce transactions were a major driver of online sales boom."], "a": "D"}, {"id": 55, "q": "What caused the growth in mobile users for online shopping according to Head Qian?", "o": ["Cheaper mobile phones.", "Higher-quality mobile phones.", "More international brands included.", "Faster development of phone companies."], "a": "A"}]}]}, {"name": "Parents & Career", "subtitle": "Unit 3", "color": "#27AE60", "sections": [{"type": "normal", "name": "Part II Listening Section A", "questions": [{"id": 1, "q": "", "o": ["They were sleeping in their rooms.", "They were enjoying beautiful views.", "They were watching firework shows.", "They were celebrating New Year's Eve."], "a": "D"}, {"id": 2, "q": "", "o": ["It broke out at night.", "It was triggered by fireworks.", "It spread to the nearby skyscraper.", "It was put under control early Friday."], "a": "A"}, {"id": 3, "q": "", "o": ["Refusing to pay a fine of 3,000 euros.", "Hiring illegal immigrants on his farm.", "Helping illegal immigrants entering France.", "Crossing the French border with Italy illegally."], "a": "C"}, {"id": 4, "q": "", "o": ["Close the border with Italy.", "Grant citizenship to immigrants.", "Withdraw the charge against him.", "Provide humanitarian aid to immigrants."], "a": "D"}, {"id": 5, "q": "", "o": ["A power-saving mobile phone.", "A biological outlet.", "A plant-powered phone charger.", "A pocket-sized plug."], "a": "C"}, {"id": 6, "q": "", "o": ["While they were nurturing plants.", "While they were sitting in the yard.", "While they were charging the phone.", "While they were working on their project."], "a": "B"}, {"id": 7, "q": "", "o": ["By collecting energy from the soil.", "By reducing low-level power of plugs.", "By facilitating photosynthesis of plants.", "By increasing the charging capacity of mobile phones."], "a": "A"}]}, {"type": "normal", "name": "Part II Listening Section B", "questions": [{"id": 8, "q": "", "o": ["It involves constant training.", "It needs frequent business trips.", "It requires no experience.", "It requires no college degree."], "a": "C"}, {"id": 9, "q": "", "o": ["A bank accountant.", "A finance major graduate.", "A payroll clerk.", "A Finance Department manager."], "a": "B"}, {"id": 10, "q": "", "o": ["In-service training.", "Nice workplace.", "Financial security.", "Career development."], "a": "C"}, {"id": 11, "q": "", "o": ["A college student and the professor.", "A visitor to a company and the guide.", "A job candidate and the interviewer.", "A guest speaker and the host."], "a": "C"}, {"id": 12, "q": "", "o": ["He is a filmmaker.", "He can travel in time.", "He is a song writer.", "He wants to stay young."], "a": "A"}, {"id": 13, "q": "", "o": ["Someone he knows.", "Nobody but himself.", "His high school teacher.", "His former classmate."], "a": "B"}, {"id": 14, "q": "", "o": ["He felt as if he was hugging the 18-year-old self.", "He was touched by their enduring true friendship.", "He thought his hard work had finally been rewarded.", "He was amused by his friend's attempt to look like him."], "a": "A"}, {"id": 15, "q": "", "o": ["Ways to look forward to the future life.", "Reasons for embracing a positive lifestyle.", "Frequently asked questions by 18-year-olds.", "A project of filming oneself at different ages."], "a": "D"}]}, {"type": "normal", "name": "Part II Listening Section C", "questions": [{"id": 16, "q": "", "o": ["Fathers spend more time taking care of the children.", "Fathers take on more bread-winner responsibilities.", "Stay-at-home fathers far outnumber working mothers.", "Working mothers are earning more than working fathers."], "a": "A"}, {"id": 17, "q": "", "o": ["He was seriously ill last year.", "He has some kind of disability.", "He earned less than his wife.", "He has never intended to work."], "a": "C"}, {"id": 18, "q": "", "o": ["It's a waste of time.", "He is scared by the idea.", "He considered it a good lifestyle.", "It is worthwhile taking care of kids."], "a": "B"}, {"id": 19, "q": "", "o": ["Purple tea can be sold for a higher price.", "The local government provides financial support.", "Demand for purple tea has been high these years.", "Purple tea is easier to grow than other kinds of tea."], "a": "A"}, {"id": 20, "q": "", "o": ["When boiled, the drink is purple and brown.", "The demand outnumbered the supply this year.", "It is not the healthiest among all kinds of tea.", "It hasn't brought anticipated profits to farmers."], "a": "D"}, {"id": 21, "q": "", "o": ["Health benefits of tea.", "The tea market in Kenya.", "Purple tea as a new drink.", "Kenyan tea farmers' worries."], "a": "D"}, {"id": 22, "q": "", "o": ["Less participation in class activities.", "Grades dropping by half a letter.", "A low-quality sleep at night.", "High level stress in class."], "a": "B"}, {"id": 23, "q": "", "o": ["He lowers the grade of students using their phones.", "He asks students to drop his class if caught using phones.", "He increases the percentage of participation in the grading.", "He offers participation points for students turning off their phones."], "a": "D"}, {"id": 24, "q": "", "o": ["It motivates students to work harder.", "It distracts students further from class.", "It reduces students' anxiety and stress.", "It affects students' academic performance."], "a": "B"}, {"id": 25, "q": "", "o": ["A research on students' cell phone use.", "A solution to smartphone distraction in class.", "Causes of smartphone use among college students.", "Consequences of cell phone use among college students."], "a": "B"}]}, {"type": "cloze", "name": "Part III Reading Section A (选词填空 Q26-35)", "passage": ["Students are too focused on obtaining their degree and getting through the system, but employers are looking for more than degrees with high GPAs attached to them. \"It is important to have a good GPA, but if all you do is study and haven't [26] yourself in anything else, that candidate is not as desirable. Showing the [27] of your experiences is more important in getting a job.\" [28] director Dr. Deveta Gardner said.", "But if employers aren't checking up on your grades, then what are they looking for in a [29] employee? When it comes to making yourself seem desirable to an employer, there are seven competencies that college graduates should be able to demonstrate [30] major or industry: critical thinking, oral/written communications, [31], information tech application, teamwork/[32], professionalism/work ethic and career management.", "Due to the popularity of social media and growing importance of technology, it has become [33] important to have an online presence to start a career. Though networking online to build connections is essential, Gardner [34] that having the wrong online presence can shoot yourself in the foot. \"What's on your Facebook and Twitter can be [35] by your employers even if you think you have the best privacy settings,\" he said. \"How you present yourself in social media will be looked at, so make sure that you are cleaning it up because that's how people learn about you.\""], "wordBank": [["A", "worthless"], ["B", "diversity"], ["C", "increasingly"], ["D", "beware"], ["E", "leadership"], ["F", "committed"], ["G", "involved"], ["H", "collaboration"], ["I", "vice"], ["J", "searched"], ["K", "potential"], ["L", "despite"], ["M", "noted"], ["N", "criterion"], ["O", "exceptionally"]], "blanks": [[26, "G"], [27, "B"], [28, "I"], [29, "K"], [30, "L"], [31, "E"], [32, "H"], [33, "C"], [34, "M"], [35, "J"]]}, {"type": "normal", "name": "Passage One (职场女性)", "questions": [{"id": 46, "q": "What does professional success mean for many young women?", "o": ["Reporting on their colleagues' feelings.", "Hiding properly their female characteristics.", "Mastering usually male dominated workplaces.", "Standing up for as many opportunities as possible."], "a": "C"}, {"id": 47, "q": "Why does the author mention her own internship experience?", "o": ["To illustrate how to read people's minds.", "To explain how to gain the trust of a boss.", "To show how female characteristics can be strengths.", "To clarify prevalent biases against women in workplaces."], "a": "C"}, {"id": 48, "q": "Which of the following is mentioned as an advantage of women?", "o": ["Strong will.", "Broad vision.", "Gentle character.", "Emotional aptitude."], "a": "D"}, {"id": 49, "q": "Why is it advisable to voice what you want in a workplace?", "o": ["Because bosses do not like reserved people.", "Because it is an innate female characteristic.", "Because it can make you stand out among men.", "Because bosses tend to notice only explicit requests."], "a": "D"}, {"id": 50, "q": "What happens if a woman never says no to opportunities?", "o": ["She will damage her reputation.", "She will hurt herself and the company.", "She will outperform her male colleagues.", "She will be considered the best employee."], "a": "B"}]}, {"type": "normal", "name": "Passage Two (女童教育)", "questions": [{"id": 51, "q": "What do we learn about the disadvantage girls suffer in terms of education?", "o": ["Sub-Saharan Africa has the least proportion of girls who attend school.", "16% of the out-of-school girls in Asia are not likely to start school.", "More than 60 million primary-school-age girls were out of school in 2013.", "More out-of-school girls than boys cannot start school in South and West Asia."], "a": "D"}, {"id": 52, "q": "Which of the following is more likely to happen to an educated girl?", "o": ["Seek independence.", "Marry at an early age.", "Send her children to school.", "Respect her male counterparts."], "a": "C"}, {"id": 53, "q": "Which of the following is likely to be prevented if girls are granted access to education?", "o": ["Lasting poverty.", "Gender equality.", "Financial crimes.", "Environmental exploitation."], "a": "A"}, {"id": 54, "q": "What do we learn about the barriers to girls' education throughout the world?", "o": ["Girls' parents often have limited resources.", "Schools do not ask boys to pay tuition fees.", "There are often not enough female teachers.", "Schools provide toilets and classrooms only for boys."], "a": "C"}, {"id": 55, "q": "Where do you think is the passage probably taken from?", "o": ["A report issued by a local government.", "A history textbook used in U.S. schools.", "An advertisement aimed for the Europeans.", "A report issued by an international organization."], "a": "D"}]}]}, {"name": "Women Nobel Prize Winners", "subtitle": "Unit 4", "color": "#8E44AD", "sections": [{"type": "normal", "name": "Part II Listening Section A", "questions": [{"id": 1, "q": "", "o": ["The loss of the world's wildlife.", "Scientific research in the wildlife.", "The illegal hunting of the wildlife.", "Environmental protection before 1970."], "a": "A"}, {"id": 2, "q": "", "o": ["Make laws to protect the environment.", "Fund environmental protection groups.", "Set up natural homes for fish, mammals and birds.", "Provide sustainable products and renewable energy."], "a": "A"}, {"id": 3, "q": "", "o": ["White middle-aged American men without jobs.", "White middle-class Americans at retirement age.", "White middle-aged American women with children.", "White middle-aged Americans without college degrees."], "a": "D"}, {"id": 4, "q": "", "o": ["They are by nature more optimistic.", "They were born in another country.", "They are less likely to be unemployed.", "They are better-off than previous generations."], "a": "D"}, {"id": 5, "q": "", "o": ["12 people were killed.", "60 people were injured.", "It was severely flooded.", "It was caught in rainstorms."], "a": "D"}, {"id": 6, "q": "", "o": ["The dirtiness of the rain.", "The continuation of rain fall.", "The cooling of ocean surface.", "The weather event called El Nino."], "a": "D"}, {"id": 7, "q": "", "o": ["Supermarkets have been closed.", "Schools have suspended classes.", "Some organizations have sheltered the homeless.", "People have been evacuated from affected areas."], "a": "B"}]}, {"type": "normal", "name": "Part II Listening Section B", "questions": [{"id": 8, "q": "", "o": ["She is a coach.", "She is an actress.", "She is a gymnast.", "She is a journalist."], "a": "C"}, {"id": 9, "q": "", "o": ["To get rid of her.", "To make her happy.", "To make her energetic.", "To cultivate her interest."], "a": "A"}, {"id": 10, "q": "", "o": ["She found it boring.", "She found it profitable.", "She felt free with gymnastics.", "She felt stressful with gymnastics."], "a": "C"}, {"id": 11, "q": "", "o": ["She does not care.", "She does not agree.", "She admits it is true.", "She regards it upsetting."], "a": "B"}, {"id": 12, "q": "", "o": ["Discuss work-related issues after working hours.", "Have conversations about non-work-related topics.", "Gossip about an irritating coworker without revealing their names.", "Send an email to an annoying coworker without revealing their names."], "a": "D"}, {"id": 13, "q": "", "o": ["A boss who forbids him to eat lunch.", "A colleague who takes too few showers.", "A manager who tries to occupy all employees' time with work.", "A coworker who wastes time on non-work-related conversations."], "a": "C"}, {"id": 14, "q": "", "o": ["Angry.", "Pleased.", "Ridiculous.", "Sympathetic."], "a": "D"}, {"id": 15, "q": "", "o": ["Take a break from work.", "Have a cigarette and chat.", "Tell more people about the website.", "Send an email to the annoying coworker."], "a": "A"}]}, {"type": "normal", "name": "Part II Listening Section C", "questions": [{"id": 16, "q": "", "o": ["Reasons why women are dissatisfied with their jobs.", "The responsibilities of a successful business woman.", "How to exert power and influence in the same way as men do.", "How to judge whether a company supports women's development."], "a": "D"}, {"id": 17, "q": "", "o": ["Women's salaries, titles and responsibilities.", "Women's compensation and benefits package.", "Women's ambition and potentials in their career development.", "Women's role in strategy-making and operations of the company."], "a": "D"}, {"id": 18, "q": "", "o": ["Resources and support for women employees.", "Number of ambitious women hired.", "Encouragement to seek higher positions.", "Budget for women's development network."], "a": "D"}, {"id": 19, "q": "", "o": ["It is heavily burdened by its safety network.", "It is voted as the happiest nation in the world.", "It cares about immigrants more than native citizens.", "It has the lowest tax rate among European countries."], "a": "B"}, {"id": 20, "q": "", "o": ["Freedom of speech.", "Permanent citizenship.", "Good career advancement.", "High academic achievements."], "a": "A"}, {"id": 21, "q": "", "o": ["Low housing prices.", "Free access to transportation.", "Free access to daily necessities.", "Generous unemployment benefits."], "a": "D"}, {"id": 22, "q": "", "o": ["The average Dane only works 30 hours a week.", "Danes have the most public holidays in the world.", "The average Dane enjoys six weeks paid annual leave.", "Both women and men enjoy generous leave after childbirth."], "a": "C"}, {"id": 23, "q": "", "o": ["To plan for events.", "To evaluate oneself.", "To give presentations.", "To learn a second language."], "a": "C"}, {"id": 24, "q": "", "o": ["Watch one's own performance.", "Decide on the main ideas and points.", "Use helpful tools to monitor oneself.", "Talk in a fluid and confident manner."], "a": "B"}, {"id": 25, "q": "", "o": ["Knowing the audience personally.", "Understanding the speech subject well.", "Evaluating other speakers' performance.", "Giving speeches only in one's first language."], "a": "B"}]}, {"type": "cloze", "name": "Part III Reading Section A (选词填空 Q26-35)", "passage": ["As her reputation grew, Alice Munro [26] most of her public events, although she still traveled to accept many of the prizes she was [27] for her work. She has largely remained elusive, read and reviewed but not that often seen in the media.", "Her life has been quiet, lived mostly in Clinton among friends and family, concentrated on the richness of her [28] of life and literary imagination. And as her life has continued, Munro has, as everyone does, experienced the pains of being: illnesses, slowing down, the deaths of friends and loved ones. Her works tell an eloquent story detailing such [29] of her life, and many more. They reveal her to be just what she is: an artist who has lived her life mostly in Clinton, quietly, [30] ever and always by her own writing.", "[31] her life and career, Alice Munro has meditated on the life she has lived herself, that she has seen others live, the lives she has known and [32]. Through their complexity, through their clarity, and through their precision, the stories Munro has published capture the [33] feelings of what it is like to live, to be alive. From first to last, Munro's stories [34] her as an artist who is without question among the most [35] masters of the short story."], "wordBank": [["A", "awarded"], ["B", "throughout"], ["C", "isolated"], ["D", "fragments"], ["E", "arranged"], ["F", "intrigued"], ["G", "intense"], ["H", "imagined"], ["I", "observation"], ["J", "accomplished"], ["K", "contribution"], ["L", "abandoned"], ["M", "by"], ["N", "reveal"], ["O", "suspected"]], "blanks": [[26, "L"], [27, "A"], [28, "I"], [29, "D"], [30, "F"], [31, "B"], [32, "H"], [33, "G"], [34, "N"], [35, "J"]]}, {"type": "normal", "name": "Passage One (LinkedIn)", "questions": [{"id": 46, "q": "What is the purpose of the new 'LinkedIn Students' app?", "o": ["To help college graduates find a more desirable job.", "To render job-hunting less stressful for college graduates.", "To assist college graduates to contact their university alumni.", "To relieve the pain college students may feel when rejected."], "a": "C"}, {"id": 47, "q": "What are students required to do before they use the new app?", "o": ["They should have a LinkedIn profile.", "They should swipe their credit cards.", "They should have a personal statement.", "They should upload a video of their biography."], "a": "A"}, {"id": 48, "q": "What do we learn about the testing of the app?", "o": ["It had a satisfying result.", "It attracted many students.", "It was conducted during a commute.", "It involved two college career centers."], "a": "A"}, {"id": 49, "q": "How does the app help job-hunting graduates?", "o": ["It makes them look more professional.", "It gives them access to more job positions.", "It enables them to negotiate for higher salaries.", "It provides them with better recommendations."], "a": "D"}, {"id": 50, "q": "What does the passage mainly discuss?", "o": ["LinkedIn's new strategy to go user-friendly.", "LinkedIn's ambition to tap the international market.", "LinkedIn's new app for job-hunting college students.", "LinkedIn's collaboration with universities on job-hunting apps."], "a": "C"}]}, {"type": "normal", "name": "Passage Two (第一份工作)", "questions": [{"id": 51, "q": "According to the author, what matters most to college graduates hunting for a job?", "o": ["Career development.", "Their job expectation.", "The nature of the work.", "Whether they find a job."], "a": "D"}, {"id": 52, "q": "What do college graduates expect their first job to be like?", "o": ["It offers promotion opportunities.", "It requires fewer working hours.", "It's more major-related.", "It is less demanding."], "a": "C"}, {"id": 53, "q": "What can be inferred about the 2015 graduates in the survey?", "o": ["Half of them ended up partially employed.", "Half of them felt sorry for their inadequate education.", "Most of them were unhappy about the changeable job market.", "Most of them started their working life with career-focused jobs."], "a": "A"}, {"id": 54, "q": "What does the author say about college students' first jobs?", "o": ["They determine where they live.", "They enhance their reading ability.", "They offer them opportunities for promotion.", "They give them little sense of accomplishments."], "a": "D"}, {"id": 55, "q": "What is the best title for the passage?", "o": ["First Job or Career Job.", "Employed or Underemployed.", "Why Your First Job Matters Not.", "How Labor Market Trend Changes."], "a": "C"}]}]},
+{"name": "课本选词填空", "subtitle": "新视野大学英语", "color": "#E91E63", "sections": [{"type": "cloze", "name": "课本选词 4.1 - 海洋探索", "passage": ["We have spent a great deal of time and money exploring space, but remain [26] about vast areas of our own planet. For we still know little of the world [27] the surface of the seas. With so much to learn about life in the [28] of the ocean it is surprising there is so little [29] for deep sea exploration. It amounts to little more than a drop in the [30] of what is needed if we are to make full use of this [31] resource. Given our growing population the oceans may even hold the key to the [32] of our [33]. It would be foolish to continue to [34] their importance."], "wordBank": [["A", "ignorant"], ["B", "beneath"], ["C", "depths"], ["D", "funding"], ["E", "bucket"], ["F", "vital"], ["G", "survival"], ["H", "species"], ["I", "overlook"], ["J", "surface"], ["K", "explore"], ["L", "resource"], ["M", "marine"], ["N", "climate"], ["O", "current"]], "blanks": [[26, "A"], [27, "B"], [28, "C"], [29, "D"], [30, "E"], [31, "F"], [32, "G"], [33, "H"], [34, "I"]]}, {"type": "cloze", "name": "课本选词 4.1 - 社区变迁", "passage": ["Can you recall a time when the area where you live was very different from what it is today? Given the [26] changes that China has passed through in recent years, that would not be surprising. Whole neighborhoods have been [27]. New construction has meant that the housing stock has improved in size and quality. As a result of redevelopment many people have been able to move out of old housing into new [28] that offers better amenities, [29] their standard of living.", "This is naturally to be welcomed, but the change has not been without some costs. As whole areas of traditional low-rise housing have been laid low to make way for high-rise apartments, [30] for neighbors to casually hang [31] with each other have frequently [32]."], "wordBank": [["A", "dramatic"], ["B", "transformed"], ["C", "accommodation"], ["D", "boosting"], ["E", "opportunities"], ["F", "around"], ["G", "declined"], ["H", "redevelopment"], ["I", "amenities"], ["J", "neighborhoods"], ["K", "construction"], ["L", "quality"], ["M", "traditional"], ["N", "standard"], ["O", "frequently"]], "blanks": [[26, "A"], [27, "B"], [28, "C"], [29, "D"], [30, "E"], [31, "F"], [32, "G"]]}, {"type": "normal", "name": "词汇练习 1 (1-16)", "questions": [{"id": 1, "q": "Autumn has arrived here on the [___] of a hot summer with unexpected speed.", "o": ["heels", "tips", "edge", "back"], "a": "A"}, {"id": 2, "q": "As a diplomat, he has [___] the birth of the new nation.", "o": ["witnessed", "created", "ignored", "prevented"], "a": "A"}, {"id": 3, "q": "When you make travel plans, you'd better [___] that every flight can be late.", "o": ["assume", "deny", "forget", "ensure"], "a": "A"}, {"id": 4, "q": "I have made it quite [___] from the beginning that I want to be part of the team.", "o": ["clear", "vague", "secret", "complex"], "a": "A"}, {"id": 5, "q": "The way of life there was totally [___] to her.", "o": ["alien", "familiar", "similar", "known"], "a": "A"}, {"id": 6, "q": "She was shocked by the [___] environment where local people looked at her with a suspicious eye.", "o": ["hostile", "friendly", "warm", "comfortable"], "a": "A"}, {"id": 7, "q": "Andrew made an [___] contribution to the project.", "o": ["initial", "final", "minor", "generous"], "a": "A"}, {"id": 8, "q": "For the first time in decades, the leaders [___] hands and sat down to talk.", "o": ["shook", "raised", "held", "clapped"], "a": "A"}, {"id": 9, "q": "The old building has become a sort of a local [___].", "o": ["landmark", "problem", "burden", "mystery"], "a": "A"}, {"id": 10, "q": "The dwarf sees farther than the giant when he stands on the [___]'s shoulder.", "o": ["latter", "former", "giant", "tall"], "a": "A"}, {"id": 11, "q": "All these parts are supposed to [___] together in this device.", "o": ["fit", "break", "move", "fall"], "a": "A"}, {"id": 12, "q": "We saw a wonderful [___] of fruit and vegetables at the market.", "o": ["array", "piece", "pair", "lack"], "a": "A"}, {"id": 13, "q": "This plan does not [___] into the company's overall marketing strategy.", "o": ["fit", "come", "look", "turn"], "a": "A"}, {"id": 14, "q": "Astronauts have brought back [___] of rock from the moon.", "o": ["specimens", "tools", "photos", "reports"], "a": "A"}, {"id": 15, "q": "One needs to [___] the possibilities of Europe's political future.", "o": ["explore", "ignore", "reject", "forget"], "a": "A"}, {"id": 16, "q": "A set of gears are [___] to control the speed and direction of the vehicle.", "o": ["installed", "removed", "broken", "ordered"], "a": "A"}]}, {"type": "normal", "name": "词汇练习 2 (1-17)", "questions": [{"id": 1, "q": "As the strikers lingered on the streets, refusing to [___], the police finally stepped in.", "o": ["disband", "continue", "advance", "celebrate"], "a": "A"}, {"id": 2, "q": "I've conducted interviews but never been in charge of actual [___].", "o": ["hiring", "planning", "reporting", "training"], "a": "A"}, {"id": 3, "q": "Writing a dictionary is an [___] and difficult task.", "o": ["arduous", "easy", "simple", "quick"], "a": "A"}, {"id": 4, "q": "Professor MacDonnell [___] that last summer was one of the hottest since 1880.", "o": ["noted", "forgot", "denied", "questioned"], "a": "A"}, {"id": 5, "q": "You go through a series of [___] processes when you see something new.", "o": ["cognitive", "physical", "social", "emotional"], "a": "A"}, {"id": 6, "q": "Once we [___] together all the facts, we'll understand the situation better.", "o": ["pull", "break", "throw", "cut"], "a": "A"}, {"id": 7, "q": "The discovery could [___] Einstein's theory of relativity.", "o": ["validate", "reject", "challenge", "ignore"], "a": "A"}, {"id": 8, "q": "Stevie Wonder is possibly the only person I would consider a musical [___].", "o": ["genius", "critic", "teacher", "fan"], "a": "A"}, {"id": 9, "q": "How should a minor who [___] murder be punished?", "o": ["commits", "reports", "prevents", "discovers"], "a": "A"}, {"id": 10, "q": "A [___] president usually reports directly to the CEO of the company.", "o": ["vice", "senior", "former", "assistant"], "a": "A"}, {"id": 11, "q": "Personal finance [___] to all financial decisions of an individual.", "o": ["refers", "leads", "adds", "turns"], "a": "A"}, {"id": 12, "q": "The best coaches possessed a deep sense of [___].", "o": ["humility", "pride", "anger", "greed"], "a": "A"}, {"id": 13, "q": "He emphasized the importance of [___] between universities and businesses.", "o": ["collaboration", "competition", "conflict", "comparison"], "a": "A"}, {"id": 14, "q": "The guarantee could be [___] if the company goes bankrupt.", "o": ["worthless", "valuable", "helpful", "useful"], "a": "A"}, {"id": 15, "q": "A group of high-level executives form the [___] management.", "o": ["senior", "junior", "middle", "local"], "a": "A"}, {"id": 16, "q": "Interns are often [___] with the problem of not having enough work.", "o": ["faced", "pleased", "satisfied", "bored"], "a": "A"}, {"id": 17, "q": "The [___] man can make decisions on the fly.", "o": ["decisive", "hesitant", "careless", "nervous"], "a": "A"}]}]},
+{"name": "课本选词填空", "subtitle": "新视野大学英语", "color": "#E91E63", "sections": [{"type": "cloze", "name": "4.1 选词 - 海洋探索", "passage": ["We have spent a great deal of time and money exploring space, but remain [26] about vast areas of our own planet. For we still know little of the world [27] the surface of the seas. With so much to learn about life in the [28] of the ocean it is surprising there is so little [29] for deep sea exploration. It amounts to little more than a drop in the [30] of what is needed if we are to make full use of this [31] resource. Given our growing population the oceans may even hold the key to the [32] of our [33]. It would be foolish to continue to [34] their importance."], "wordBank": [["A", "ignorant"], ["B", "beneath"], ["C", "depths"], ["D", "funding"], ["E", "bucket"], ["F", "vital"], ["G", "survival"], ["H", "species"], ["I", "overlook"], ["J", "surface"], ["K", "explore"], ["L", "resource"], ["M", "marine"], ["N", "climate"], ["O", "current"]], "blanks": [[26, "A"], [27, "B"], [28, "C"], [29, "D"], [30, "E"], [31, "F"], [32, "G"], [33, "H"], [34, "I"]]}, {"type": "normal", "name": "词汇练习 1 (1-16)", "questions": [{"id": 1, "q": "Autumn has arrived on the [___] of a hot summer.", "o": ["heels", "tips", "edge", "back"], "a": "A"}, {"id": 2, "q": "He has [___] the birth of the new nation.", "o": ["witnessed", "created", "ignored", "prevented"], "a": "A"}, {"id": 3, "q": "You'd better [___] that every flight can be late.", "o": ["assume", "deny", "forget", "ensure"], "a": "A"}, {"id": 4, "q": "I have made it quite [___] from the beginning.", "o": ["clear", "vague", "secret", "complex"], "a": "A"}, {"id": 5, "q": "The way of life was totally [___] to her.", "o": ["alien", "familiar", "similar", "known"], "a": "A"}, {"id": 6, "q": "The [___] environment shocked her.", "o": ["hostile", "friendly", "warm", "comfortable"], "a": "A"}, {"id": 7, "q": "Andrew made an [___] contribution.", "o": ["initial", "final", "minor", "generous"], "a": "A"}, {"id": 8, "q": "The leaders [___] hands and sat down.", "o": ["shook", "raised", "held", "clapped"], "a": "A"}, {"id": 9, "q": "The old building is a local [___].", "o": ["landmark", "problem", "burden", "mystery"], "a": "A"}, {"id": 10, "q": "The dwarf stands on the [___]'s shoulder.", "o": ["latter", "former", "giant", "tall"], "a": "A"}, {"id": 11, "q": "All parts are supposed to [___] together.", "o": ["fit", "break", "move", "fall"], "a": "A"}, {"id": 12, "q": "We saw an [___] of fruit and vegetables.", "o": ["array", "piece", "pair", "lack"], "a": "A"}, {"id": 13, "q": "This doesn't [___] into our strategy.", "o": ["fit", "come", "look", "turn"], "a": "A"}, {"id": 14, "q": "Astronauts brought back [___] of rock.", "o": ["specimens", "tools", "photos", "reports"], "a": "A"}, {"id": 15, "q": "One needs to [___] the possibilities.", "o": ["explore", "ignore", "reject", "forget"], "a": "A"}, {"id": 16, "q": "Gears are [___] to control the speed.", "o": ["installed", "removed", "broken", "ordered"], "a": "A"}]}, {"type": "normal", "name": "词汇练习 2 (1-18)", "questions": [{"id": 1, "q": "Animals threatened with [___].", "o": ["extinction", "survival", "growth", "captivity"], "a": "A"}, {"id": 2, "q": "Their plan seemed [___] to failure.", "o": ["doomed", "destined", "likely", "bound"], "a": "A"}, {"id": 3, "q": "They built [___] civilizations.", "o": ["brilliant", "ancient", "modern", "simple"], "a": "A"}, {"id": 4, "q": "Change one's daily [___].", "o": ["routine", "habit", "plan", "schedule"], "a": "A"}, {"id": 5, "q": "A lamp [___] from the ceiling.", "o": ["swinging", "hanging", "moving", "falling"], "a": "A"}, {"id": 6, "q": "The [___] of ancient philosophy.", "o": ["essence", "history", "origin", "value"], "a": "A"}, {"id": 7, "q": "Grandma would [___] how cute I was.", "o": ["recall", "forget", "imagine", "describe"], "a": "A"}, {"id": 8, "q": "[___] development of industry.", "o": ["Dramatic", "Gradual", "Slow", "Steady"], "a": "A"}, {"id": 9, "q": "To draw out a child's [___].", "o": ["potential", "goal", "method", "cost"], "a": "A"}, {"id": 10, "q": "Wear it by [___] it in.", "o": ["tucking", "folding", "rolling", "putting"], "a": "A"}, {"id": 11, "q": "Carbon emission [___].", "o": ["reduction", "increase", "tax", "credit"], "a": "A"}, {"id": 12, "q": "The industry of [___].", "o": ["tomorrow", "today", "past", "future"], "a": "A"}, {"id": 13, "q": "The [___] step toward negotiation.", "o": ["initial", "final", "next", "hard"], "a": "A"}, {"id": 14, "q": "Our planet is constantly [___].", "o": ["spinning", "moving", "growing", "changing"], "a": "A"}, {"id": 15, "q": "Couldn't find any [___] reason.", "o": ["obvious", "hidden", "clear", "simple"], "a": "A"}, {"id": 16, "q": "The city [___] an annual film festival.", "o": ["hosts", "holds", "attends", "visits"], "a": "A"}, {"id": 17, "q": "Qualities that [___] a leader.", "o": ["distinguish", "separate", "remove", "choose"], "a": "A"}, {"id": 18, "q": "An [___] matter to attend to.", "o": ["urgent", "important", "easy", "simple"], "a": "A"}]}, {"type": "cloze", "name": "4.1 选词 - 社区变迁", "passage": ["Can you recall a time when the area where you live was very different from what it is today? Given the [26] changes that China has passed through in recent years, that would not be surprising. Whole neighborhoods have been [27]. New construction has meant that the housing stock has improved in size and quality. As a result of redevelopment many people have been able to move out of old housing into new [28] that offers better amenities, [29] their standard of living.", "This is naturally to be welcomed, but the change has not been without some costs. As whole areas of traditional low-rise housing have been laid low to make way for high-rise apartments, [30] for neighbors to casually hang [31] with each other have frequently [32]."], "wordBank": [["A", "dramatic"], ["B", "transformed"], ["C", "accommodation"], ["D", "boosting"], ["E", "opportunities"], ["F", "around"], ["G", "declined"], ["H", "redevelopment"], ["I", "amenities"], ["J", "neighborhoods"], ["K", "construction"], ["L", "quality"], ["M", "traditional"], ["N", "standard"], ["O", "frequently"]], "blanks": [[26, "A"], [27, "B"], [28, "C"], [29, "D"], [30, "E"], [31, "F"], [32, "G"]]}, {"type": "normal", "name": "词汇练习 3 (1-17)", "questions": [{"id": 1, "q": "The strikers refused to [___].", "o": ["disband", "continue", "advance", "celebrate"], "a": "A"}, {"id": 2, "q": "In charge of actual [___].", "o": ["hiring", "planning", "reporting", "training"], "a": "A"}, {"id": 3, "q": "An [___] and difficult task.", "o": ["arduous", "easy", "simple", "quick"], "a": "A"}, {"id": 4, "q": "He [___] that summer was the hottest.", "o": ["noted", "forgot", "denied", "questioned"], "a": "A"}, {"id": 5, "q": "[___] processes when learning.", "o": ["Cognitive", "Physical", "Social", "Emotional"], "a": "A"}, {"id": 6, "q": "[___] together all the facts.", "o": ["Pull", "Break", "Throw", "Cut"], "a": "A"}, {"id": 7, "q": "Could [___] Einstein's theory.", "o": ["validate", "reject", "challenge", "ignore"], "a": "A"}, {"id": 8, "q": "Considered a musical [___].", "o": ["genius", "critic", "teacher", "fan"], "a": "A"}, {"id": 9, "q": "A minor who [___] murder.", "o": ["commits", "reports", "prevents", "discovers"], "a": "A"}, {"id": 10, "q": "A [___] president reports to CEO.", "o": ["vice", "senior", "former", "assistant"], "a": "A"}, {"id": 11, "q": "Personal finance [___] to decisions.", "o": ["refers", "leads", "adds", "turns"], "a": "A"}, {"id": 12, "q": "A deep sense of [___].", "o": ["humility", "pride", "anger", "greed"], "a": "A"}, {"id": 13, "q": "[___] between universities and business.", "o": ["Collaboration", "Competition", "Conflict", "Comparison"], "a": "A"}, {"id": 14, "q": "The guarantee could be [___].", "o": ["worthless", "valuable", "helpful", "useful"], "a": "A"}, {"id": 15, "q": "[___] management of a company.", "o": ["Senior", "Junior", "Middle", "Local"], "a": "A"}, {"id": 16, "q": "Interns are [___] with this problem.", "o": ["faced", "pleased", "satisfied", "bored"], "a": "A"}, {"id": 17, "q": "A [___] man can decide on the fly.", "o": ["decisive", "hesitant", "careless", "nervous"], "a": "A"}]}, {"type": "cloze", "name": "选词 - 招聘面试", "passage": ["Those in charge of organizations naturally want to recruit the best candidates. But just what attributes are managers looking for in a [26] employee? What do they set out to assess in an interview? One thing is the capacity to come up with answers when confronted with problems. Another is the ability to combine self-confidence with a degree of [27] that will enable you to take advice gladly.", "If you are applying because you are unhappy with your current employer, [28] of saying negative things about them. In an increasingly [29] market you need to convince the interviewer that you have the ability and enthusiasm to do the job well."], "wordBank": [["A", "potential"], ["B", "humility"], ["C", "beware"], ["D", "competitive"], ["E", "confident"], ["F", "negative"], ["G", "interview"], ["H", "candidate"], ["I", "enthusiasm"], ["J", "capacity"], ["K", "advice"], ["L", "offer"], ["M", "experience"], ["N", "quality"], ["O", "manager"]], "blanks": [[26, "A"], [27, "B"], [28, "C"], [29, "D"]]}, {"type": "normal", "name": "词汇练习 4 (1-15)", "questions": [{"id": 1, "q": "Cooking oils are [___] without heat.", "o": ["extracted", "cooked", "prepared", "processed"], "a": "A"}, {"id": 2, "q": "A great [___] of thought.", "o": ["amount", "deal", "lot", "number"], "a": "A"}, {"id": 3, "q": "Gold is highly [___].", "o": ["portable", "valuable", "useful", "heavy"], "a": "A"}, {"id": 4, "q": "The dropping of [___] bombs.", "o": ["atomic", "nuclear", "powerful", "deadly"], "a": "A"}, {"id": 5, "q": "Fighting [___] between them.", "o": ["broke out", "went on", "started", "occurred"], "a": "A"}, {"id": 6, "q": "A chemical [___] of a substance.", "o": ["property", "element", "compound", "mixture"], "a": "A"}, {"id": 7, "q": "He discovered and [___] the DNA molecule.", "o": ["isolated", "created", "studied", "examined"], "a": "A"}, {"id": 8, "q": "Registered as a [___] person.", "o": ["disabled", "special", "different", "needy"], "a": "A"}, {"id": 9, "q": "She [___] her porridge.", "o": ["stirred", "ate", "cooked", "served"], "a": "A"}, {"id": 10, "q": "This product [___] waste water.", "o": ["purifies", "cleans", "treats", "filters"], "a": "A"}, {"id": 11, "q": "[___] of radioactive materials.", "o": ["Emissions", "Amounts", "Levels", "Outputs"], "a": "A"}, {"id": 12, "q": "[___] physical exercise.", "o": ["Intense", "Light", "Regular", "Daily"], "a": "A"}, {"id": 13, "q": "The fog [___] over the land.", "o": ["disappeared", "appeared", "thickened", "remained"], "a": "A"}, {"id": 14, "q": "A large outbreak will be [___].", "o": ["inevitable", "unlikely", "possible", "avoidable"], "a": "A"}, {"id": 15, "q": "Gases continue to be [___].", "o": ["emitted", "produced", "released", "created"], "a": "A"}]}, {"type": "cloze", "name": "选词 - 玛丽·居里", "passage": ["I suspect that by now you know all about Marie Curie. You have been bombarded with facts about her. You will have read about the brilliant work that led to her being [26] the most prestigious of scientific prizes. But why is it that so few women have been [27] for a Nobel Prize in science?", "It is an [28] question and one that has led to [29] debate, stirring up emotions, with strong views on whether nature or nurture plays the dominant role. The debate has generated numerous [30], but arriving at a conclusion that satisfies everyone would prove difficult."], "wordBank": [["A", "awarded"], ["B", "nominated"], ["C", "intriguing"], ["D", "intense"], ["E", "hypotheses"], ["F", "conclusion"], ["G", "debate"], ["H", "prize"], ["I", "emotions"], ["J", "dominant"], ["K", "scientific"], ["L", "brilliant"], ["M", "role"], ["N", "nature"], ["O", "nurture"]], "blanks": [[26, "A"], [27, "B"], [28, "C"], [29, "D"], [30, "E"]]}]}
+];
+var S =   {}, C = {}, AB = null;
+
+function init() {
+  var t = 0;
+  D.forEach(function(u,ui) {
+    u.sections.forEach(function(s,si) {
+      if (s.type === "cloze") {
+        var k = ui+"-"+si; C[k] = {};
+        s.blanks.forEach(function(b){ C[k][b[0]] = {s:null,ch:0,ok:0}; t++; });
+      } else {
+        s.questions.forEach(function(q) {
+          var k = ui+"-"+si+"-"+q.id; S[k] = {s:null,ch:0,ok:0}; t++;
+        });
+      }
+    });
+  });
+  gid("tq").textContent = t;
+  rN(); sU(0);
+}
+
+function gid(id) { return document.getElementById(id); }
+
+// Wrong-answer functions
+function getW(){try{return JSON.parse(localStorage.getItem("qw")||"[]")}catch(e){return []}}
+function setW(w){try{localStorage.setItem("qw",JSON.stringify(w))}catch(e){}}
+function addW(k,un,sn,qt,op,ua,ca){var w=getW(),i,f=0;for(i=0;i<w.length;i++){if(w[i].k===k){w[i].cnt=(w[i].cnt||1)+1;w[i].ts=new Date().toLocaleString();f=1;break}}if(!f){w.push({k:k,un:un,sn:sn,qt:qt,op:op,ua:ua,ca:ca,cnt:1,ts:new Date().toLocaleString()})}setW(w);uB();}
+function rmW(k){var w=getW(),i;for(i=0;i<w.length;i++){if(w[i].k===k){w.splice(i,1);break}}setW(w);uB();}
+function clW(){if(confirm("清空所有错题？")){setW([]);uB();sW();}}
+function gH(){try{return JSON.parse(localStorage.getItem("qh")||"[]")}catch(e){return[]}}
+function pH(t,c){var h=gH();h.push({ts:new Date().toLocaleString(),t:t,c:c});if(h.length>50)h=h.slice(-50);try{localStorage.setItem("qh",JSON.stringify(h))}catch(e){}}
+function uB(){var w=getW(),e=document.querySelector(".snb");if(e)e.textContent=w.length||"";e.style.display=w.length?"inline":"none";}
+function eW(){var w=getW();if(!w.length){alert("没有错题可导出");return}var str=JSON.stringify(w);navigator.clipboard.writeText(str).then(function(){alert("已复制到剪贴板！\n在另一设备导入即可同步")},function(){prompt("手动复制下方代码到另一设备：",str)})}
+function iW(){navigator.clipboard.readText().then(function(t){try{var d=JSON.parse(t);if(!Array.isArray(d))throw"bad";setW(d);uB();sW();alert("已导入 "+d.length+" 条错题！")}catch(e){alert("数据无效")}},function(){alert("无法读取剪贴板，请手动复制")})}
+function sW(){var w=getW(),m=gid("main");if(!w.length){m.innerHTML='<div class="wv"><h3>📝 错题集</h3><div class="wvi" style="text-align:center;padding:40px">暂无错题，继续加油！🎉</div></div>';return;}
+var h='<div class="wv"><h3>📝 错题集</h3><div class="wvi">共 <b>'+w.length+'</b> 道错题。<br><button class="wbtn d" onclick="clW()">🗑️ 清空</button> <button class="wbtn p" onclick="eW()">📤 导出</button> <button class="wbtn p" onclick="iW()">📥 导入</button></div>';
+w.forEach(function(q){var ll="ABCDEFGHIJKLMNOPQRSTUVWXYZ";h+='<div class="wq"><div class="wi">'+q.un+' | '+q.sn+' | '+q.ts+'</div><div class="qt">'+(q.qt||"")+'</div>';if(q.op){if(q.op.length===2&&q.ua==="wrong"){h+='<div class="wqa w">\u274c 你的答案: '+q.op[0]+'</div>';h+='<div class="wqa r">\u2714\ufe0f 正确答案: '+q.op[1]+'</div>'}else{var uai=-1,cai=-1;q.op.forEach(function(o,i){if(ll[i]===q.ua)uai=i;if(ll[i]===q.ca)cai=i});h+='<div class="wqa w">\u274c 你的答案: '+(uai>=0?q.op[uai]:q.ua)+'</div>';h+='<div class="wqa r">\u2714\ufe0f 正确答案: '+(cai>=0?q.op[cai]:q.ca)+'</div>'}}h+='</div>';});
+m.innerHTML=h;}
+
+function rN() {
+  var h = "";
+  D.forEach(function(u,i) {
+    h += '<div class="snav-i'+(i===0?" on":"")+'" onclick="sU('+i+')">';
+    h += '<div class="ti">'+u.name+'</div><div class="su">'+u.subtitle+'</div></div>';
+  });
+  h += '<div class="snav-i" id="wrongNav"><div class="ti">📝 错题集<span class="snb"></span></div><div class="su">查看错题</div></div>';
+  gid("nav").innerHTML = h;
+  var wn = gid("wrongNav");
+  if (wn) wn.onclick = function() {
+    document.querySelectorAll(".snav-i").forEach(function(e){e.classList.remove("on");});
+    wn.classList.add("on");
+    sW();
+  };
+  uB();
+}
+
+function sU(ui) {
+  var els = document.querySelectorAll(".snav-i");
+  for (var i=0;i<els.length;i++) els[i].classList.remove("on");
+  els[ui].classList.add("on");
+  var u = D[ui];
+  var h = '<div class="stabs">';
+  h += '<button class="bback" onclick="sU('+ui+'); sS('+ui+',0)">&#x2190; 返回</button>';
+  u.sections.forEach(function(s,i) {
+    h += '<button class="stab'+(i===0?" on":"")+'" onclick="sS('+ui+','+i+')">'+s.name+'</button>';
+  });
+  h += '</div>';
+  u.sections.forEach(function(s,si) {
+    h += '<div id="x'+ui+"-"+si+'"'+(si!==0?' style="display:none"':'')+'>';
+    if (s.type==="cloze") { h += rC(ui,si,s); }
+    else { s.questions.forEach(function(q){ h += rQ(ui,si,q); }); }
+    h += '<div class="snav-b">';
+    h += '<button class="prev"'+(si===0?' disabled':'')+' onclick="sS('+ui+','+(si-1)+')">← 上一节</button>';
+    h += '<button class="next"'+(si===u.sections.length-1?' disabled':'')+' onclick="sS('+ui+','+(si+1)+')">下一节 →</button>';
+    h += '</div></div>';
+  });
+  gid("main").innerHTML = h;
+  uS();
+}
+
+function sS(ui,si) {
+  var t = document.querySelectorAll(".stab");
+  for (var i=0;i<t.length;i++) t[i].classList.remove("on");
+  t[si].classList.add("on");
+  var x = document.querySelectorAll("#main > div");
+  for (var i=0;i<x.length;i++) x[i].style.display="none";
+  gid("x"+ui+"-"+si).style.display="block";
+}
+
+function rQ(ui,si,q) {
+  var k = ui+"-"+si+"-"+q.id;
+  var st = S[k]||{}, a = q.a, opts = q.o;
+  var h = '<div class="qc" id="c'+k+'"><div class="qh"><span class="qn">'+q.id+'.</span><span>'+q.q+'</span></div>';
+  if (st.ch) {
+    h += '<div class="qtr" id="tr'+k+'">⏳ 翻译中...</div>';
+  }
+  h += '<div class="os">';
+  var ll = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  opts.forEach(function(o,i) {
+    var le = ll[i], cl = st.ch ? (le===a?"r":(st.s===le?"w":"")) : (st.s===le?"s":"");
+    h += '<div class="op '+cl+'" data-k="'+k+'" data-l="'+le+'">';
+    h += '<span class="l">'+le+'</span><span>'+o+'</span></div>';
+  });
+  h += '</div><div class="qf">';
+  if (st.ch) {
+    h += '<span class="r '+(st.ok?"g":"b")+'">'+(st.ok?"正确!":"答案: "+a)+'</span>';
+  }
+  h += '</div></div>';
+  return h;
+}
+
+function autoTr(k) {
+  var el = gid("tr"+k);
+  if (el && !el.dataset.loaded) { el.innerHTML = "翻译暂不可用"; el.dataset.loaded = "1"; }
+}
+function clozeTr(ui, si) {
+  var el = gid("trc"+ui+"-"+si);
+  if (el) { el.innerHTML = "翻译暂不可用"; el.dataset.loaded = "1"; }
+}
+function rC(ui,si,s) {
+  var k = ui+"-"+si, cs = C[k]||{};
+  var h = '<div class="cc"><div class="ci">';
+  if (AB !== null && cs[AB] && !cs[AB].ch) {
+    h += '已选中第 ['+AB+'] 个空，请点击下方词库中的单词填入。';
+  } else {
+    h += '点击文章中的空白 [###]，再点击下方词库中的单词填入。';
+  }
+  h += '</div><div class="cp">';
+  s.passage.forEach(function(p) {
+    h += "<p>"+p.replace(/\[(\d+)\]/g, function(m,num) {
+      var id = parseInt(num), st = cs[id], cl = "bs", co = "___";
+      if(st) {
+        if(st.ch){ cl+=st.ok?" r":" w"; co=st.s||"___"; }
+        else if(st.s){ cl+=" f"; co=st.s; }
+      }
+      if (AB===id && (!st||!st.ch)) cl+=" a";
+      return '<span class="'+cl+'" data-ui="'+ui+'" data-si="'+si+'" data-bid="'+id+'"><span>'+co+'</span><span class="bn">'+id+'</span></span>';
+    }) + "</p>";
+  });
+  h += '</div><div class="wb"><div class="t">词库:</div><div class="g">';
+  s.wordBank.forEach(function(w) {
+    var u = 0;
+    s.blanks.forEach(function(b){ var st=cs[b[0]]; if(st&&st.s===w[0]&&!st.ch) u=1; });
+    h += '<button class="wbt'+(u?" u":"")+'" data-ui="'+ui+'" data-si="'+si+'" data-le="'+w[0]+'"><span class="wl">'+w[0]+'</span>'+w[1]+'</button>';
+  });
+  h += '</div></div>';
+  var d=0,o=0;
+  s.blanks.forEach(function(b){ var st=cs[b[0]]; if(st&&st.ch){d++;if(st.ok)o++;} });
+  if (d>0) { h += '<div style="text-align:center;padding:10px;font-size:16px;font-weight:700;color:'+(o===d?"#4caf50":"#f44336")+'">'+o+"/"+d+" 正确</div>"; }
+  h += '<div id="trc'+ui+"-"+si+'" class="qtr" style="display:'+(d>0?"block":"none")+'">⏳ 翻译全文...</div>';
+  h += '<div class="ca"><button class="cac" data-ui="'+ui+'" data-si="'+si+'">批改全部</button><button class="car" data-ui="'+ui+'" data-si="'+si+'">重置</button></div></div>';
+  return h;
+}
+
+// Event delegation
+document.addEventListener("click", function(e) {
+  var op = e.target.closest(".op");
+  if (op) {
+    var k = op.dataset.k, l = op.dataset.l;
+    var st = S[k]; if (!st||st.ch) return;
+    st.s = l; st.ch = 1;
+    var ps = k.split("-").map(Number), ui=ps[0], si=ps[1], qid=ps[2];
+    var ql = D[ui].sections[si].questions;
+    for (var i=0;i<ql.length;i++) { if (ql[i].id === qid) { st.ok = (l === ql[i].a); break; } }
+    if (!st.ok) {
+      var qf = null; ql.forEach(function(qx){if(qx.id===qid)qf=qx;});
+      if (qf) addW(k,D[ui].name,D[ui].sections[si].name,qf.q,qf.o,l,qf.a);
+    } else {
+      var w=getW(); for(var wi=0;wi<w.length;wi++){if(w[wi].k===k){w.splice(wi,1);setW(w);uB();break;}}
+    }
+    var card = op.closest(".qc");
+    if (card) { var qf=null; ql.forEach(function(qx){if(qx.id===qid)qf=qx;}); if(qf) card.outerHTML = rQ(ui,si,qf); }
+    // Auto translate
+    setTimeout(function(){ autoTr(k); }, 100);
+    uS(); return;
+  }
+  var bs = e.target.closest(".bs");
+  if (bs) {
+    var ui = parseInt(bs.dataset.ui), si = parseInt(bs.dataset.si), bid = parseInt(bs.dataset.bid);
+    var k = ui+"-"+si, st = C[k][bid];
+    if (!st||st.ch) return;
+    if (AB===bid) { st.s=null; AB=null; }
+    else if (st.s) { st.s=null; AB=null; }
+    else AB=bid;
+    cU(ui,si); return;
+  }
+  var wb = e.target.closest(".wbt");
+  if (wb && !wb.classList.contains("u")) {
+    if (AB===null) return;
+    var ui = parseInt(wb.dataset.ui), si = parseInt(wb.dataset.si), le = wb.dataset.le;
+    var k = ui+"-"+si, cs = C[k], st = cs[AB];
+    if (!st||st.ch) return;
+    var used = false;
+    Object.keys(cs).forEach(function(kk){ if(cs[kk].s===le&&!cs[kk].ch&&parseInt(kk)!==AB) used=true; });
+    if (used) return;
+    st.s = le; AB=null;
+    cU(ui,si); return;
+  }
+  var cac = e.target.closest(".cac");
+  if (cac) {
+    var ui = parseInt(cac.dataset.ui), si = parseInt(cac.dataset.si);
+    var k = ui+"-"+si, cs = C[k];
+    var s = D[ui].sections[si];
+    s.blanks.forEach(function(b){
+      var st = cs[b[0]];
+      if (st && st.s && !st.ch) {
+        st.ch = 1;
+        st.ok = st.s === b[1];
+        if (!st.ok) {
+          var fullText = s.passage.join(" ");
+          var sentences = fullText.split(/(?<=[.!?])\s+/);
+          var sentText = "";
+          for (var si2=0;si2<sentences.length;si2++) {
+            if (sentences[si2].indexOf("["+b[0]+"]") >= 0) {
+              sentText = sentences[si2].replace(/\[\d+\]/g, "___");
+              break;
+            }
+          }
+          if (!sentText) sentText = "Blank [" + b[0] + "]";
+          var userWord = "";
+          s.wordBank.forEach(function(wb){ if(wb[0]===st.s) userWord = wb[1]; });
+          var corrWord = "";
+          s.wordBank.forEach(function(wb){ if(wb[0]===b[1]) corrWord = wb[1]; });
+          var wk = ui+"-"+si+"-c"+b[0];
+          addW(wk, D[ui].name, s.name, sentText, [userWord, corrWord], "wrong", corrWord);
+        }
+      }
+    });
+    cU(ui,si); uS();
+    setTimeout(function(){ clozeTr(ui, si); }, 200);
+    return;
+  }
+  var car = e.target.closest(".car");
+  if (car) {
+    var ui = parseInt(car.dataset.ui), si = parseInt(car.dataset.si);
+    var k = ui+"-"+si;
+    Object.keys(C[k]).forEach(function(kk){ C[k][kk]={s:null,ch:0,ok:0}; });
+    AB=null; cU(ui,si); uS(); return;
+  }
+  var qtr = e.target.closest(".qtr");
+  if (qtr) {
+    var id = qtr.id;
+    if (!id || !id.startsWith("tr")) return;
+    var k = id.substring(2);
+    if (qtr.dataset.loaded) return;
+    fetchTr(k, qtr);
+    return;
+  }
+});
+
+function cU(ui,si) {
+  gid("x"+ui+"-"+si).innerHTML = rC(ui,si,D[ui].sections[si]);
+  sS(ui,si);
+}
+
+function uS() {
+  var d=0,o=0,t=0;
+  Object.keys(S).forEach(function(k){ t++; if(S[k].ch){d++;if(S[k].ok)o++;} });
+  Object.keys(C).forEach(function(ck){
+    Object.keys(C[ck]).forEach(function(kk){ t++; if(C[ck][kk].ch){d++;if(C[ck][kk].ok)o++;} });
+  });
+  gid("tq").textContent = t;
+  gid("dq").textContent = d;
+  gid("cq").textContent = o;
+  gid("ar").textContent = d?Math.round(o/d*100)+"%":"0%";
+}
+
+init();
+</script>
+</body>
+</html>

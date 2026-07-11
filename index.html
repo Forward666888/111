@@ -251,7 +251,7 @@ function rQ(ui,si,q) {
   var st = S[k]||{}, a = q.a, opts = q.o;
   var h = '<div class="qc" id="c'+k+'"><div class="qh"><span class="qn">'+q.id+'.</span><span>'+q.q+'</span></div>';
   if (st.ch) {
-    h += '<div class="qtr" id="tr'+k+'">⏳ 翻译中...</div>';
+    h += '<div class="qtr" id="tr'+k+'">📖 '+(q.t||"暂无翻译")+'</div>';
   }
   h += '<div class="os">';
   var ll = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";

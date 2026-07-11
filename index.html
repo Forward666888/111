@@ -282,29 +282,48 @@ function autoTr(k) {
   }
   if (!q) return;
   var txt = q.q + "\nA) " + (q.o[0]||"") + "\nB) " + (q.o[1]||"") + "\nC) " + (q.o[2]||"") + "\nD) " + (q.o[3]||"");
-  var cb = "tc" + k.replace(/-/g,"");
+  tryMM(k, el, q, txt);
+}
+function tryMM(k, el, q, txt) {
+  var cb = "tc" + k.replace(/-/g,""), done = 0;
   window[cb] = function(r) {
+    if (done) return; done = 1;
     try {
       var t = (r.responseData||{}).translatedText || "";
-      if (t && t.indexOf("MYMEMORY") < 0) {
-        var parts = t.split("\n"), html = "";
-        for (var pi=0;pi<parts.length;pi++) {
-          var line = parts[pi].trim(); if (!line) continue;
-          if (/^[A-D]\)/.test(line)) {
-            var letter = line.charAt(0), isC = letter === q.a;
-            var st = 'padding:2px 0;font-size:14px' + (isC ? ';color:#d32f2f;font-weight:700' : '');
-            html += '<div style="' + st + '">' + (isC ? '✅ ' : '') + line + (isC ? ' <span style="font-size:12px;color:#999">(正确答案)</span>' : '') + '</div>';
-          } else { html += '<div style="font-weight:600;margin-bottom:4px;font-size:14px">' + line + '</div>'; }
-        }
-        el.innerHTML = html; el.dataset.loaded = "1"; delete window[cb]; return;
-      }
+      if (t && t.indexOf("MYMEMORY") < 0) { showTrRes(el, t, q.a); el.dataset.loaded = "1"; delete window[cb]; return; }
     } catch(e) {}
-    el.innerHTML = "翻译暂不可用"; delete window[cb];
+    delete window[cb]; tryGgl(k, el, q, txt);
   };
   var s = document.createElement("script");
   s.src = "https://api.mymemory.translated.net/get?q=" + encodeURIComponent(txt) + "&langpair=en|zh-CN&jsoncallback=" + cb;
   document.body.appendChild(s);
-  setTimeout(function(){if(!el.dataset.loaded){el.innerHTML="翻译超时";delete window[cb];}},8000);
+  setTimeout(function(){if(!done&&!el.dataset.loaded){done=1;delete window[cb];tryGgl(k,el,q,txt);}},4000);
+}
+function tryGgl(k, el, q, txt) {
+  if (el.dataset.loaded) return;
+  fetch("https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=zh-CN&dt=t&q=" + encodeURIComponent(txt))
+    .then(function(r){ if(!r.ok)throw Error(); return r.json(); })
+    .then(function(d){
+      try {
+        var ls=[],i; for(i=0;i<d[0].length;i++) ls.push(d[0][i][0]);
+        var t = ls.join("");
+        if (t) { showTrRes(el, t, q.a); el.dataset.loaded = "1"; return; }
+      } catch(e) {}
+      el.innerHTML = "翻译不可用";
+    })
+    .catch(function(){ el.innerHTML = "翻译不可用"; });
+}
+function showTrRes(el, t, ca) {
+  var parts = t.split("\n"), html = "";
+  for (var pi=0;pi<parts.length;pi++) {
+    var line = parts[pi].trim(); if (!line) continue;
+    if (/^[A-D]\)/.test(line)) {
+      var letter = line.charAt(0), isC = letter === ca;
+      var st = 'padding:2px 0;font-size:14px' + (isC ? ';color:#d32f2f;font-weight:700' : '');
+      html += '<div style="' + st + '">' + (isC ? '\u2705 ' : '') + line + (isC ? ' <span style="font-size:12px;color:#999">(正确答案)</span>' : '') + '</div>';
+    } else { html += '<div style="font-weight:600;margin-bottom:4px;font-size:14px">' + line + '</div>'; }
+  }
+  el.innerHTML = html;
 }
 function clozeTr(ui, si) {
   var el = gid("trc"+ui+"-"+si);
@@ -319,18 +338,32 @@ function clozeTr(ui, si) {
   });
   el.innerHTML = "翻译全文...";
   el.style.display = "block";
-  var cb = "ct" + ui + "_" + si;
+  tryMMc(ui, si, el, txt);
+}
+function tryMMc(ui, si, el, txt) {
+  var cb = "ct" + ui + "_" + si, done = 0;
   window[cb] = function(r) {
+    if (done) return; done = 1;
     try {
       var t = (r.responseData||{}).translatedText || "";
       if (t && t.indexOf("MYMEMORY") < 0) { el.innerHTML = t; el.dataset.loaded = "1"; delete window[cb]; return; }
     } catch(e) {}
-    el.innerHTML = "翻译暂不可用"; delete window[cb];
+    delete window[cb]; tryGglc(ui, si, el, txt);
   };
   var s2 = document.createElement("script");
   s2.src = "https://api.mymemory.translated.net/get?q=" + encodeURIComponent(txt) + "&langpair=en|zh-CN&jsoncallback=" + cb;
   document.body.appendChild(s2);
-  setTimeout(function(){if(!el.dataset.loaded){el.innerHTML="翻译超时";delete window[cb];}},8000);
+  setTimeout(function(){if(!done&&!el.dataset.loaded){done=1;delete window[cb];tryGglc(ui,si,el,txt);}},4000);
+}
+function tryGglc(ui, si, el, txt) {
+  if (el.dataset.loaded) return;
+  fetch("https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=zh-CN&dt=t&q=" + encodeURIComponent(txt))
+    .then(function(r){ if(!r.ok)throw Error(); return r.json(); })
+    .then(function(d){
+      try { var ls=[],i; for(i=0;i<d[0].length;i++) ls.push(d[0][i][0]); var t=ls.join(""); if(t){el.innerHTML=t;el.dataset.loaded="1";return;} } catch(e) {}
+      el.innerHTML = "翻译不可用";
+    })
+    .catch(function(){ el.innerHTML = "翻译不可用"; });
 }
 function rC(ui,si,s) {
   var k = ui+"-"+si, cs = C[k]||{};

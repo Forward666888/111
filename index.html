@@ -7,17 +7,17 @@
 <title>英语四级闯关题库</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{background:#f0f2f5;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;color:#333}
-.header{background:linear-gradient(135deg,#1a237e,#283593);color:#fff;padding:30px 20px;text-align:center}
+body{background:#0d1b2a;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;color:#e0e0e0}
+.header{background:linear-gradient(135deg,#0a1628,#1a237e);color:#fff;padding:30px 20px;text-align:center}
 .header h1{font-size:28px}
 .header h1 span{color:#ffd54f}
-.stats{background:#fff;border-bottom:1px solid #ddd;padding:12px 20px;display:flex;justify-content:center;gap:30px;position:sticky;top:0;z-index:100;flex-wrap:wrap}
-.stats .s{font-size:14px;color:#555}
-.stats .n{font-weight:700;color:#1a237e;font-size:18px}
+.stats{background:#0f1d30;border-bottom:1px solid #1a2d4a;padding:12px 20px;display:flex;justify-content:center;gap:30px;position:sticky;top:0;z-index:100;flex-wrap:wrap}
+.stats .s{font-size:14px;color:#90caf9}
+.stats .n{font-weight:700;color:#64b5f6;font-size:18px}
 .app{display:flex;max-width:1400px;margin:0 auto;padding:20px;gap:20px}
 .side{width:240px;flex-shrink:0}
-.sbtn{padding:6px 14px;border-radius:8px;border:1px solid #e0e0e0;background:#fff;cursor:pointer;font-size:13px;color:#555;display:flex;align-items:center;gap:4px;flex-shrink:0}
-.sbtn:hover{background:#e3f2fd;border-color:#1a237e}
+.sbtn{padding:6px 14px;border-radius:8px;border:1px solid #1a2d4a;background:#0f1d30;cursor:pointer;font-size:13px;color:#90caf9;display:flex;align-items:center;gap:4px;flex-shrink:0}
+.sbtn:hover{background:#152a45;border-color:#42a5f5}
   .qc{padding:12px;border-radius:8px}
   .qh{font-size:13px}
   .qh .qn{min-width:24px;font-size:13px}
@@ -153,7 +153,7 @@ function sS(ui,si) {
 function rQ(ui,si,q) {
   var k = ui+"-"+si+"-"+q.id;
   var st = S[k]||{}, a = q.a, opts = q.o;
-  var h = '<div class="qc" id="c'+k+'"><div class="qh"><span class="qn">'+q.id+'.</span><span>'+q.q+'</span>';
+  var h = '<div class="qc" id="c'+k+'"><div class="qh" style="color:#e0e0e0"><span class="qn">'+q.id+'.</span><span>'+q.q+'</span>';
   if (st.ch && q.t) { h += '<div style="font-size:13px;color:#888;margin-top:4px;font-weight:400">'+q.t+'</div>'; }
   h += '</div>';
   h += '<div class="os">';
@@ -162,7 +162,7 @@ function rQ(ui,si,q) {
     var le = ll[i], cl = st.ch ? (le===a?"r":(st.s===le?"w":"")) : (st.s===le?"s":"");
     h += '<div class="op '+cl+'" data-k="'+k+'" data-l="'+le+'">';
     h += '<span class="l">'+le+'</span><span>'+o+'</span>';
-    if (st.ch && q.ot && q.ot[i]) { h += ' <span style="color:#888;font-size:13px">('+q.ot[i]+')</span>'; }
+    if (st.ch && q.ot && q.ot[i]) { h += ' <span style="color:#78909c;font-size:13px">('+q.ot[i]+')</span>'; }
     h += '</div>';
   });
   h += '</div><div class="qf">';
@@ -204,7 +204,7 @@ function rC(ui,si,s) {
   var d=0,o=0;
   s.blanks.forEach(function(b){ var st=cs[b[0]]; if(st&&st.ch){d++;if(st.ok)o++;} });
   if (d>0) { h += '<div style="text-align:center;padding:10px;font-size:16px;font-weight:700;color:'+(o===d?"#4caf50":"#f44336")+'">'+o+"/"+d+" 正确</div>"; }
-  if (d>0 && s.pt) { h += '<div style="margin-top:10px;padding:12px;background:#f5f5f5;border-radius:8px;font-size:14px;line-height:1.8;border-left:3px solid #1a237e">📖 '+s.pt+'</div>'; }
+  if (d>0 && s.pt) { h += '<div style="margin-top:10px;padding:12px;background:#0a1628;border-radius:8px;font-size:14px;line-height:1.8;border-left:3px solid #1a237e">📖 '+s.pt+'</div>'; }
   
   h += '<div class="ca"><button class="cac" data-ui="'+ui+'" data-si="'+si+'">批改全部</button><button class="car" data-ui="'+ui+'" data-si="'+si+'">重置</button></div></div>';
   return h;

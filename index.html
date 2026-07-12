@@ -122,6 +122,7 @@ function sU(ui) {
   var u = D[ui];
   var h = '<div class="stabs">';
   h += '<button class="bback" onclick="sU('+ui+'); sS('+ui+',0)">&#x2190; 返回</button>';
+    h += '<button class="sbtn" onclick="shuf()">&#x1F500; 打乱</button>';
   u.sections.forEach(function(s,i) {
     h += '<button class="stab'+(i===0?" on":"")+'" onclick="sS('+ui+','+i+')">'+s.name+'</button>';
   });
